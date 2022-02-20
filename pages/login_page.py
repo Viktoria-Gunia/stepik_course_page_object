@@ -6,12 +6,16 @@ class LoginPage(BasePage):
         self.should_be_login_url()
         self.should_be_login_form()
         self.should_be_register_form()
-
+    def go_to_login_page(self):
+        link = self.browser.find_element(*LoginPageLocators.LOGIN_URL)
+        link.click()
+        # alert = self.browser.switch_to.alert
+        # alert.accept()
+        
     def should_be_login_url(self):
         # реализуйте проверку на корректный url адрес
 #в should_be_login_url проверяем в assert не равена ли строка self.url через find строке login.  (!= -1)        
-        link = self.browser.find_element(*LoginPageLocators.LOGIN_URL)
-        link.click()    
+        self.go_to_login_page()
         assert "login" in self.browser.current_url, "Wrong url:substring 'login' is not present in the current url"
 
     def should_be_login_form(self):
